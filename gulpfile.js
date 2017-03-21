@@ -98,8 +98,7 @@ gulp.task('htmlpretty', function() {
 // JS
 gulp.task('jsConcat', ['jsMain'], function () {
     return gulp.src([
-        './src/assets/bower_components/jquery/dist/jquery.js',
-        './src/assets/bower_components/bootstrap/dist/js/bootstrap.js'
+        './src/assets/bower_components/jquery/dist/jquery.js'
     ])
         .pipe(sourcemaps.init())
         .pipe(concat("bundle.js"))
