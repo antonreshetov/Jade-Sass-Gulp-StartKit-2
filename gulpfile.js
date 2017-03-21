@@ -14,6 +14,7 @@ var htmlpretty = require('gulp-prettify');
 var notify = require("gulp-notify");
 var runSequence = require('run-sequence');
 var staticHash = require('gulp-static-hash');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Error Handler
 function swallowError(error) {
@@ -43,12 +44,13 @@ gulp.task('copyfiles', function() {
 
 // SCSS to CSS + Prefix
 gulp.task('css', function() {
-    return gulp.src('src/assets/scss/main.scss')
+    return gulp.src('./src/assets/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 5 versions']
         }))
-        .pipe(gulp.dest('app/assets/css'))
+        .pipe(sourcemaps.init())
+        .pipe(gulp.dest('./app/assets/css'))
         // compressed
         .pipe(sass({
             outputStyle: 'compressed'
@@ -59,7 +61,8 @@ gulp.task('css', function() {
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('app/assets/css'))
+        .pipe(sourcemaps.write('./map'))
+        .pipe(gulp.dest('./app/assets/css'))
         .pipe(browserSync.reload({
             stream: true
         }));
@@ -99,13 +102,15 @@ gulp.task('jsConcat', ['jsMain'], function() {
             '.src/assets/js/vendor/jquery-1.11.2.min.js',
             '.src/assets/js/vendor/*.js'
         ])
+        .pipe(sourcemaps.init())
         .pipe(concat("bundle.js"))
-        .pipe(gulp.dest('app/assets/js'))
+        .pipe(gulp.dest('./app/assets/js'))
         .pipe(uglify())
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('app/assets/js'));
+        .pipe(sourcemaps.write('./map'))
+        .pipe(gulp.dest('./app/assets/js'));
 });
 
 gulp.task('jsMain', function() {
