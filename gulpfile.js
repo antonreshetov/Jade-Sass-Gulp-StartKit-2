@@ -35,10 +35,8 @@ gulp.task('browserSync', function() {
 // Copy Assets File
 gulp.task('copyfiles', function() {
     var img = gulp.src('src/assets/img/*')
-        // .pipe(watch('src/assets/img/*'))
         .pipe(gulp.dest('app/assets/img'));
     var fonts = gulp.src('src/assets/fonts/*')
-        // .pipe(watch('src/assets/fonts/*'))
         .pipe(gulp.dest('app/assets/fonts'));
     return merge(img, fonts);
 });
