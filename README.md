@@ -5,8 +5,8 @@ A StartKit including full setup for Jade, Gulp, Scss, Autoprefix & BrowserSync.
 
 Tools included:
 
-* [Kube](https://imperavi.com/kube/) - CSS Framework v5.0
-* [Flexiblegs](http://flexible.gs/install/scss) - Flexible Grid System 5.5.3 (SCSS)
+* [Kube](https://imperavi.com/kube/) - CSS Framework
+* [Flexiblegs](http://flexible.gs/install/scss) - Flexible Grid System
 
 ## System Preparation
 
