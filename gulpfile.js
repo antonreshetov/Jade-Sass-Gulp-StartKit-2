@@ -96,12 +96,11 @@ gulp.task('htmlpretty', function() {
 });
 
 // JS
-gulp.task('jsConcat', ['jsMain'], function() {
+gulp.task('jsConcat', ['jsMain'], function () {
     return gulp.src([
-            './src/assets/js/vendor/*.js',
-            '.src/assets/js/vendor/jquery-1.11.2.min.js',
-            '.src/assets/js/vendor/*.js'
-        ])
+        './src/assets/bower_components/jquery/dist/jquery.js',
+        './src/assets/bower_components/bootstrap/dist/js/bootstrap.js'
+    ])
         .pipe(sourcemaps.init())
         .pipe(concat("bundle.js"))
         .pipe(gulp.dest('./app/assets/js'))

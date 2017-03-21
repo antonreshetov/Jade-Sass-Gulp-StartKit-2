@@ -1,0 +1,21 @@
+{
+  "name": "Jade-Sass-Gulp-StartKit-2",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Anton Reshetov"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/antonreshetov/jade-sass-gulp-startkit-2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "2",
+    "bootstrap": "3"
+  }
+}
