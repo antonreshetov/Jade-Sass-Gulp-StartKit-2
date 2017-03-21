@@ -16,7 +16,6 @@
   ],
   "devDependencies": {
     "jquery": "2",
-    "flexiblegs-sass": "^5.5.3",
-    "kube-scss": "*"
+    "flexiblegs-sass": "^5.5.3"
   }
 }
