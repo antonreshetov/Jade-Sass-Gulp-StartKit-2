@@ -13,9 +13,8 @@ var order = require("gulp-order");
 var merge = require('merge-stream');
 var htmlpretty = require('gulp-prettify');
 var notify = require("gulp-notify");
-var replace = require('gulp-replace');
-var randomstring = require("randomstring");
 var runSequence = require('run-sequence');
+var staticHash = require('gulp-static-hash');
 
 // Error Handler
 function swallowError(error) {
@@ -146,6 +145,16 @@ gulp.task('watch', function() {
     gulp.watch('src/assets/js/main.js', ['jsMain']);
 });
 
+// Cache busting
+gulp.task('cache', function() {
+    return gulp.src('./app/**/*.html')
+        .pipe(staticHash({
+            exts: ['js', 'css'],
+            asset: './app'
+        }))
+        .pipe(gulp.dest('./app'))
+});
+
 // Clean app
 gulp.task('clean', function() {
     return gulp.src('app', {
@@ -154,19 +163,9 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-// Clear browser cache
-gulp.task('hash', function() {
-    gulp.src('app/*.html')
-        .pipe(replace('?hash', '?v=' + randomstring.generate({
-            length: 12,
-            charset: 'hex'
-        })))
-        .pipe(gulp.dest('app'));
-});
-
 // Build App
 gulp.task('build', function(){
-    runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles', 'hash');
+    runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles');
 })
 
 // Run Default
