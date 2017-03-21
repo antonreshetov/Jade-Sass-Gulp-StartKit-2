@@ -164,7 +164,7 @@ gulp.task('clean', function() {
 
 // Build App
 gulp.task('build', function(){
-    runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles');
+    runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles', 'cache');
 });
 
 // Run Default
