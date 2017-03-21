@@ -9,7 +9,6 @@ var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
 var concat = require("gulp-concat");
-var order = require("gulp-order");
 var merge = require('merge-stream');
 var htmlpretty = require('gulp-prettify');
 var notify = require("gulp-notify");
@@ -18,7 +17,7 @@ var staticHash = require('gulp-static-hash');
 
 // Error Handler
 function swallowError(error) {
-    console.log(error.toString())
+    console.log(error.toString());
     this.emit('end')
 }
 
@@ -97,13 +96,11 @@ gulp.task('htmlpretty', function() {
 
 // JS
 gulp.task('jsConcat', ['jsMain'], function() {
-    return gulp.src('./src/assets/js/vendor/*.js')
-        .pipe(order([
-            "src/assets/js/vendor/jquery-1.11.2.min.js",
-            "src/assets/js/vendor/*.js"
-        ], {
-            base: './'
-        }))
+    return gulp.src([
+            './src/assets/js/vendor/*.js',
+            '.src/assets/js/vendor/jquery-1.11.2.min.js',
+            '.src/assets/js/vendor/*.js'
+        ])
         .pipe(concat("bundle.js"))
         .pipe(gulp.dest('app/assets/js'))
         .pipe(uglify())
@@ -166,7 +163,7 @@ gulp.task('clean', function() {
 // Build App
 gulp.task('build', function(){
     runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles');
-})
+});
 
 // Run Default
 gulp.task('default', ['browserSync', 'css', 'jade', 'jsConcat', 'copyfiles', 'watch']);
