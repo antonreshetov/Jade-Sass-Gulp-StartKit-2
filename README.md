@@ -1,4 +1,4 @@
-Jade Sass Gulp StartKit 2 with Kube & Flexible.gs
+Jade Sass Gulp StartKit 2
 =============================
 
 A StartKit including full setup for Jade, Gulp, Scss, Autoprefix & BrowserSync.
@@ -7,6 +7,7 @@ Tools included:
 
 * [Kube](https://imperavi.com/kube/) - CSS Framework
 * [Flexiblegs](http://flexible.gs/install/scss) - Flexible Grid System
+* [UIkit](https://getuikit.com/docs/introduction) - UIkit
 
 ## System Preparation
 
