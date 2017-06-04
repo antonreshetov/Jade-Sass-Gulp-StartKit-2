@@ -24,7 +24,7 @@ function swallowError(error) {
 }
 
 // Browser Sync
-gulp.task('browserSync', function() {
+gulp.task('browserSync', () => {
     browserSync({
         server: {
             baseDir: 'app'
@@ -36,7 +36,7 @@ gulp.task('browserSync', function() {
 });
 
 // Copy Assets File
-gulp.task('copyfiles', function() {
+gulp.task('copyfiles', () => {
     let img = gulp.src('src/assets/img/*')
         .pipe(gulp.dest('app/assets/img'));
     let fonts = gulp.src('src/assets/fonts/*')
@@ -45,7 +45,7 @@ gulp.task('copyfiles', function() {
 });
 
 // SCSS to CSS + Prefix
-gulp.task('css', function() {
+gulp.task('css', () => {
     return gulp.src('./src/assets/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
@@ -71,7 +71,7 @@ gulp.task('css', function() {
 });
 
 // Jade
-gulp.task('jade', function() {
+gulp.task('jade', () => {
     return gulp.src('src/jade/*.jade')
         .pipe(jade({
             pretty: true
@@ -88,7 +88,7 @@ gulp.task('jade', function() {
 });
 
 // HTML Prettify
-gulp.task('htmlpretty', function() {
+gulp.task('htmlpretty', () => {
     gulp.src('app/**/*.html')
         .pipe(htmlpretty({
             indent_size: 4,
@@ -98,7 +98,7 @@ gulp.task('htmlpretty', function() {
 });
 
 // JS
-gulp.task('jsConcat', ['jsMain'], function () {
+gulp.task('jsConcat', ['jsMain'], () => {
     return gulp.src([
         './src/assets/bower_components/jquery/dist/jquery.js'
     ])
@@ -113,11 +113,11 @@ gulp.task('jsConcat', ['jsMain'], function () {
         .pipe(gulp.dest('./app/assets/js'));
 });
 
-gulp.task('jsMain', function() {
+gulp.task('jsMain', () => {
     return gulp.src('./src/assets/js/app.js')
         .pipe(babel({
-                presets: ['es2015']
-            }))
+            presets: ['es2015']
+        }))
         .pipe(gulp.dest('app/assets/js'))
         .pipe(uglify())
         .on('error', swallowError)
@@ -135,21 +135,21 @@ gulp.task('jsMain', function() {
 });
 
 // JsHint
-gulp.task('lint', function() {
+gulp.task('lint', () => {
     return gulp.src('src/assets/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
 // Watch
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('src/assets/scss/**/*.scss', ['css']);
     gulp.watch('src/jade/**/*.jade', ['jade']);
     gulp.watch('src/assets/js/app.js', ['jsMain']);
 });
 
 // Cache busting
-gulp.task('cache', function() {
+gulp.task('cache', () => {
     return gulp.src('./app/**/*.html')
         .pipe(staticHash({
             exts: ['js', 'css'],
@@ -159,15 +159,15 @@ gulp.task('cache', function() {
 });
 
 // Clean app
-gulp.task('clean', function() {
+gulp.task('clean', () => {
     return gulp.src('app', {
-            force: true
-        })
+        force: true
+    })
         .pipe(clean());
 });
 
 // Build App
-gulp.task('build', function(){
+gulp.task('build', () => {
     runSequence('clean', 'css', 'jade', 'jsConcat', 'copyfiles', 'cache');
 });
 
