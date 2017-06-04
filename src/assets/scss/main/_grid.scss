@@ -1,0 +1,16 @@
+$columns: 12;
+
+.row {
+    @include wrap;
+    @include wrap("flexbox");
+    @include wrap("top");
+    @include wrap("gutter", 24);
+    .col {
+        @include col;
+        @for $i from 1 through $columns {
+            &.col-#{$i} {
+                @include col($i, $columns)
+            }
+        }
+    }
+}

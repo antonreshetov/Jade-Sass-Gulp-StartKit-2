@@ -1,13 +1,15 @@
 /*==========================================================================*/
 /*  VARIABLES & FONTS */
 /*==========================================================================*/
-@import "main/vars";
+@import "main/colors";
 @import "main/fonts";
 /*==========================================================================*/
 /*  VENDORS  */
 /*==========================================================================*/
-@import "vendor/kube/kube";
-@import "../bower_components/flexiblegs-sass/flexiblegs-sass";
+@import "../bower_components/uikit/src/scss/variables";
+@import "../bower_components/uikit/src/scss/mixins";
+@import "../bower_components/uikit/src/scss/uikit";
+@import "../bower_components/flexiblegs-scss/flexiblegs-scss";
 /*==========================================================================*/
 /*  APP  */
 /*==========================================================================*/
