@@ -1,5 +1,5 @@
 {
-  "name": "Jade-Sass-Gulp-StartKit-2",
+  "name": "jade-sass-gulp-startkit-2",
   "description": "",
   "main": "",
   "authors": [
@@ -14,8 +14,9 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "jquery": "2",
-    "flexiblegs-sass": "^5.5.3"
+  "dependencies": {
+    "flexiblegs-scss": "^5.5.3",
+    "jquery": "^3.2.1",
+    "uikit": "^3.0.0"
   }
 }
