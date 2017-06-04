@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync');
@@ -29,7 +30,8 @@ gulp.task('browserSync', function() {
             baseDir: 'app'
         },
         browser: "google chrome",
-        notify: false
+        notify: false,
+        open: false
     });
 });
 
@@ -113,6 +115,9 @@ gulp.task('jsConcat', ['jsMain'], function () {
 
 gulp.task('jsMain', function() {
     return gulp.src('./src/assets/js/main.js')
+        .pipe(babel({
+                presets: ['es2015']
+            }))
         .pipe(gulp.dest('app/assets/js'))
         .pipe(uglify())
         .on('error', swallowError)
