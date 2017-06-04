@@ -103,7 +103,7 @@ gulp.task('jsConcat', ['jsMain'], function () {
         './src/assets/bower_components/jquery/dist/jquery.js'
     ])
         .pipe(sourcemaps.init())
-        .pipe(concat("bundle.js"))
+        .pipe(concat("vendor.js"))
         .pipe(gulp.dest('./app/assets/js'))
         .pipe(uglify())
         .pipe(rename({
@@ -114,7 +114,7 @@ gulp.task('jsConcat', ['jsMain'], function () {
 });
 
 gulp.task('jsMain', function() {
-    return gulp.src('./src/assets/js/main.js')
+    return gulp.src('./src/assets/js/app.js')
         .pipe(babel({
                 presets: ['es2015']
             }))
@@ -145,7 +145,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
     gulp.watch('src/assets/scss/**/*.scss', ['css']);
     gulp.watch('src/jade/**/*.jade', ['jade']);
-    gulp.watch('src/assets/js/main.js', ['jsMain']);
+    gulp.watch('src/assets/js/app.js', ['jsMain']);
 });
 
 // Cache busting
