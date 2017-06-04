@@ -1,20 +1,20 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync');
-var jade = require('gulp-jade');
-var watch = require('gulp-watch');
-var clean = require('gulp-clean');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
-var rename = require("gulp-rename");
-var concat = require("gulp-concat");
-var merge = require('merge-stream');
-var htmlpretty = require('gulp-prettify');
-var notify = require("gulp-notify");
-var runSequence = require('run-sequence');
-var staticHash = require('gulp-static-hash');
-var sourcemaps = require('gulp-sourcemaps');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync');
+const jade = require('gulp-jade');
+const watch = require('gulp-watch');
+const clean = require('gulp-clean');
+const jshint = require('gulp-jshint');
+const uglify = require('gulp-uglify');
+const rename = require("gulp-rename");
+const concat = require("gulp-concat");
+const merge = require('merge-stream');
+const htmlpretty = require('gulp-prettify');
+const notify = require("gulp-notify");
+const runSequence = require('run-sequence');
+const staticHash = require('gulp-static-hash');
+const sourcemaps = require('gulp-sourcemaps');
 
 // Error Handler
 function swallowError(error) {
@@ -35,9 +35,9 @@ gulp.task('browserSync', function() {
 
 // Copy Assets File
 gulp.task('copyfiles', function() {
-    var img = gulp.src('src/assets/img/*')
+    let img = gulp.src('src/assets/img/*')
         .pipe(gulp.dest('app/assets/img'));
-    var fonts = gulp.src('src/assets/fonts/*')
+    let fonts = gulp.src('src/assets/fonts/*')
         .pipe(gulp.dest('app/assets/fonts'));
     return merge(img, fonts);
 });
@@ -47,21 +47,21 @@ gulp.task('css', function() {
     return gulp.src('./src/assets/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 5 versions']
+            browsers: ['last 2 versions']
         }))
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(gulp.dest('./app/assets/css'))
         // compressed
         .pipe(sass({
             outputStyle: 'compressed'
         }).on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 5 versions']
+            browsers: ['last 2 versions']
         }))
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(sourcemaps.write('./map'))
+        // .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest('./app/assets/css'))
         .pipe(browserSync.reload({
             stream: true
